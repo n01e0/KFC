@@ -1,0 +1,29 @@
+#!/bin/bash
+
+sudo apt update
+sudo apt upgrade
+sudo apt install linux-headers-$(uname -r)
+sudo apt install build-essential chrpath cmake diffstat flex gawk gcc gcc-multilib git kmod libelf-dev libncurses5-dev libsdl1.2-dev lzop make socat texinfo unar unzip wget xterm 
+
+KERNEL_VERSION=$(uname -r| sed -e 's/-.*//g')
+KERNEL_SRC="linux-source-${KERNEL_VERSION}"
+sudo apt install $KERNEL_SRC
+mkdir kernel
+cd kernel
+KERNEL_ZIP_PATH=$(dpkg -L $KERNEL_SRC|grep "/usr/src/$KERNEL_SRC.tar.*")
+echo $PWD $KERNEL_ZIP_PATH
+unar -o $PWD $KERNEL_ZIP_PATH
+cd $KERNEL_SRC
+CFG_VERSION_MAX=0
+for cfg in $(ls /boot|grep config)
+do
+    ver=$(echo $cfg | sed -e 's/config-[0-9]\.[0-9]\.[0-9]-//g' | sed -e 's/-.*//g')
+    if [ $ver -ge $CFG_VERSION_MAX ]; then
+        CFG_VERSION_MAX=$ver
+    fi
+done
+
+cp /boot/config-$KERNEL_VERSION-$CFG_VERSION_MAX* .config
+
+make oldconfig
+make -j4

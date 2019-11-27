@@ -3,7 +3,7 @@
 sudo apt update
 sudo apt upgrade
 sudo apt install linux-headers-$(uname -r)
-sudo apt install bc build-essential chrpath cmake diffstat flex gawk gcc gcc-multilib git kmod libelf-dev libssl-dev libncurses5-dev libsdl1.2-dev lzop make socat texinfo unar unzip wget xterm 
+sudo apt install bc bison build-essential chrpath cmake diffstat flex gawk gcc gcc-multilib git kmod libelf-dev libssl-dev libncurses5-dev libsdl1.2-dev lzop make socat texinfo unar unzip wget xterm 
 
 KERNEL_VERSION=$(uname -r| sed -e 's/-.*//g')
 KERNEL_SRC="linux-source-${KERNEL_VERSION}"
@@ -29,4 +29,4 @@ mkdir output
 OUTPUT="${PWD}/output"
 make O=$OUTPUT oldconfig
 jnum=$[$(grep cpu.cores /proc/cpuinfo |sort -u |sed 's/[^0-9]//g') +1]
-make O=$OUTPUT -j${jnum}
+make O=$OUTPUT -j${jnum} ARCH=x86 mrproper

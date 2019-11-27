@@ -29,4 +29,4 @@ mkdir output
 OUTPUT="${PWD}/output"
 make O=$OUTPUT oldconfig
 jnum=$[$(grep cpu.cores /proc/cpuinfo |sort -u |sed 's/[^0-9]//g') +1]
-make O=$OUTPUT -j${jnum} ARCH=x86 mrproper
+make O=$OUTPUT -j${jnum} ARCH=$(arch) mrproper

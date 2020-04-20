@@ -11,8 +11,7 @@ KERNEL_VERSION=$(uname -r|sed -e "s/\.$(uname -m)//g")
 KERNEL_SRC="kernel-${KERNEL_VERSION}.src.rpm"
 CENT_VERSION=$(cat /etc/redhat-release|awk '{print $3}')
 CENT_SRC="http://vault.centos.org/${CENT_VERSION}/updates/Source/SPackages/${KERNEL_SRC}"
-mkdir kernel
-echo '%_topdir %(echo $PWD)/kernel' > ~/.rpmmacros
+echo '%_topdir %(echo $HOME)/rpmbuild' > ~/.rpmmacros
 mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
 cd ~/rpmbuild/SPECS
 rpmbuild -bp --target=$(uname -m) kernel.spec

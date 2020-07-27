@@ -32,6 +32,8 @@ EOF
 
 echo -e $(cat <<EOF
 #!/bin/bash\n
+sudo apt-get update
+sudo apt-get install -y git bc bison build-essential chrpath cmake diffstat flex gawk gcc gcc-multilib git kmod libelf-dev libssl-dev libncurses5-dev libsdl1.2-d    ev lzop make socat texinfo unar unzip wget xterm
 cd /home/vagrant/linux-stable\n
 yes ""|make config\n
 make -j17\n

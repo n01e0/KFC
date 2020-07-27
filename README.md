@@ -1,4 +1,3 @@
 # KFC
-Kernel module development Functional toolCain
+Kernel development Functional toolCain
 
-TODO: impl virtual env

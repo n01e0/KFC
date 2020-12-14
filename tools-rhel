@@ -1,0 +1,6 @@
+#!/bin/bash
+sudo yum groupinstall -y "Development Tools"
+sudo yum install -y rpm-build redhat-rpm-config asciidoc hmaccalc perl perl-ExtUtils-Embed pesign xmlto
+sudo yum install -y audit-libs-devel binutils-devel elfutils-devel elfutils-libelf-devel java-devel
+sudo yum install -y ncurses-devel newt-devel numactl-devel pciutils-devel python-devel python-docutils zlib-devel kernel-devel
+sudo yum install -y sh-utils tar xz patch m4 make module-init-tools net-tools openssl findutils flex gawk gcc gettext gzip hostname binutils bc bison diffutils 

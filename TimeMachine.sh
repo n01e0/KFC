@@ -40,9 +40,9 @@ EOF
 echo "[+] make Vagrantfile done."
 
 echo -e $(cat <<EOF
-#!/bin/bash \n
+#!/bin/bash -e\n
 sudo apt-get update
-sudo apt-get install -y git bc bison build-essential chrpath cmake diffstat flex gawk gcc gcc-multilib git kmod libelf-dev libssl-dev libncurses5-dev libsdl1.2-dev lzop make socat texinfo unar unzip wget xterm\n
+sudo apt-get install -y git bc bison build-essential chrpath cmake diffstat flex gawk gcc gcc-multilib git kmod libelf-dev libssl-dev libncurses5-dev libsdl1.2-dev lzop make socat texinfo unzip wget xterm\n
 cd /home/vagrant/linux-stable\n
 yes "" |make oldconfig\n
 make -j8\n
